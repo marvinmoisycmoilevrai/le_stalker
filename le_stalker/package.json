@@ -17,6 +17,7 @@
     "bootstrap-vue": "latest",
     "jquery": "^3.3.1",
     "popper.js": "^1.12.9",
+    "twitter-node-client": "0.0.6",
     "vue": "^2.5.2",
     "vue-router": "^3.0.1"
   },
