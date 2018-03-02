@@ -1,6 +1,7 @@
 <template>
-  <div class="hello">
-    <h1>{{ msg }}</h1>
+  <div>
+    <h1 class="hello">{{ msg }}</h1>
+		<h1>{{ oucou }}</h1>
     <h2>Essential Links</h2>
     <ul>
       <li>
@@ -88,7 +89,8 @@ export default {
   name: 'HelloWorld',
   data () {
     return {
-      msg: 'Welcome to Your Vue.js App'
+      msg: 'Welcome to Your Vue.js App',
+			oucou: 'coucou'
     }
   }
 }
@@ -98,6 +100,10 @@ export default {
 <style scoped>
 h1, h2 {
   font-weight: normal;
+}
+
+.hello {
+  color: #42b983;
 }
 ul {
   list-style-type: none;
