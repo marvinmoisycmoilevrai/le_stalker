@@ -1,0 +1,24 @@
+{
+  "name": "le-stalker",
+  "version": "1.0.0",
+  "description": "projet web l3",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/marvinmoisycmoilevrai/le_stalker.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/marvinmoisycmoilevrai/le_stalker/issues"
+  },
+  "homepage": "https://github.com/marvinmoisycmoilevrai/le_stalker#readme",
+  "dependencies": {
+    "express": "^4.16.2",
+    "twitter-node-client": "0.0.6",
+    "vue": "^2.5.13"
+  }
+}
