@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>TEST</title>
+	</head>
+	<body>
+		<p>Bonjour {{firstname}} {{lastname}}</p>
+
+		<ul>
+		{% for town in towns %}
+		    <li>{{town}}</li>
+		{% endfor %}
+		</ul>
+
+		<p>Age: {{data.age}}</p>
+
+		<ul>
+		{% for year in years %}
+		    <li>{{year}}</li>
+		{% endfor %}
+		</ul>
+	</body>
+</html>
