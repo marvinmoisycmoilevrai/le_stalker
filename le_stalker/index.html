@@ -1,52 +1,82 @@
 <!DOCTYPE html>
-<html>
-	<head>
-		<meta charset="utf-8">
-		<title>testAPI</title>
-	</head>
-	<body>
-
-<fb:login-button
-  scope="public_profile,email"
-  onlogin="checkLoginState();">
-</fb:login-button>
-	</body>
-
-<script>
-window.fbAsyncInit = function() {
-	FB.init({
-		appId      : {{ appid }},
-		cookie     : true,
-		xfbml      : true,
-		version    : 'v2.10'
-	});
-
-	//FB.AppEvents.logPageView();
-
-	FB.getLoginStatus(function(response) {
-    statusChangeCallback(response);
-	});
+<html lang="fr">
+<head>
+  <title>Stalker</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" type="text/css"/>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
 
-	function checkLoginState() {
-  	FB.getLoginStatus(function(response) {
-    	statusChangeCallback(response);
-  	});
-	}
+</head>
+<body>
+
+   <div class="navbar-wrapper">
+       <nav class="navbar navbar-inverse navbar-static-top">
+           <a href="#"><img class="navbar-brand" alt="Logo entreprise"/></a>
+           <div class="navbar">
+						 <div class="col-sm-offset-5	">
+								<ul class="nav navbar-nav ">
+									<div class="col-sm-offset-4">
+                		<h1>Le stalker</h1>
+									</div>
+									<div class="col-sm-offset-2">
+ 							 			<h3>"Big brother is watchin'u"</h3>
+									</div>
+								</div>
+              </ul>
+             <div class="col-sm-3 col-md-3 navbar-right">
+							 <fb:login-button
+ 							  scope="public_profile,email"
+ 							  onlogin="checkLoginState();">
+ 							</fb:login-button>
+             </div>
+           </div>
+         </div>
+       </nav>
+   </div>
+	 <script>
+	 window.fbAsyncInit = function() {
+	 	FB.init({
+	 		appId      : '929000163934820',
+	 		cookie     : true,
+	 		xfbml      : true,
+	 		version    : 'v2.10'
+	 	});
+
+	 	//FB.AppEvents.logPageView();
+
+	 	FB.getLoginStatus(function(response) {
+	     statusChangeCallback(response);
+	 	});
 
 
-};
-function statusChangeCallback(response) {
-	console.log(response);
-}
-(function(d, s, id){
-	 var js, fjs = d.getElementsByTagName(s)[0];
-	 if (d.getElementById(id)) {return;}
-	 js = d.createElement(s); js.id = id;
-	 js.src = "https://connect.facebook.net/en_US/sdk.js";
-	 fjs.parentNode.insertBefore(js, fjs);
- }(document, 'script', 'facebook-jssdk'));
-</script>
+	 	function checkLoginState() {
+	   	FB.getLoginStatus(function(response) {
+	     	statusChangeCallback(response);
+	   	});
+	 	}
+
+
+	 };
+	 function statusChangeCallback(response) {
+	 	console.log(response);
+	 }
+	 (function(d, s, id){
+	 	 var js, fjs = d.getElementsByTagName(s)[0];
+	 	 if (d.getElementById(id)) {return;}
+	 	 js = d.createElement(s); js.id = id;
+	 	 js.src = "https://connect.facebook.net/en_US/sdk.js";
+	 	 fjs.parentNode.insertBefore(js, fjs);
+	  }(document, 'script', 'facebook-jssdk'));
+	 </script>
+	 	</body>
+
+
+</body>
+
+
 
 
 
