@@ -1,24 +1,39 @@
 <!DOCTYPE html>
-<html>
-	<head>
-		<meta charset="utf-8">
-		<title>TEST</title>
-	</head>
-	<body>
-		<p>Bonjour {{firstname}} {{lastname}}</p>
+<html lang="fr">
+<head>
+  <title>Entreprise MOISY</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+	{% load static %}
+	<link rel="stylesheet" type="text/css" href="{% static 'home.css' %}" />
 
-		<ul>
-		{% for town in towns %}
-		    <li>{{town}}</li>
-		{% endfor %}
-		</ul>
+</head>
+<body>
 
-		<p>Age: {{data.age}}</p>
+   <div class="navbar-wrapper">
+       <nav class="navbar navbar-inverse navbar-static-top">
+           <a href="#"><img class="navbar-brand" alt="Logo entreprise"/></a>
 
-		<ul>
-		{% for year in years %}
-		    <li>{{year}}</li>
-		{% endfor %}
-		</ul>
-	</body>
-</html>
+           <div class="navbar">
+<div class="col-sm-offset-5	">
+							<ul class="nav navbar-nav ">
+<div class="col-sm-offset-4">
+                <h1>Le stalker</h1>
+								</div>
+								<div class="col-sm-offset-2">
+ 							 	<h3>"Big brother is watchin'u"</h3>
+								</div>
+								</div>
+              </ul>
+
+
+             <div class="col-sm-3 col-md-3 navbar-right">
+               <!-- Bouton login FB -->
+             </div>
+           </div>
+         </div>
+       </nav>
+   </div>
