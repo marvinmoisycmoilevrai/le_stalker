@@ -3,15 +3,15 @@ var fs = require('fs'),
   express = require('express'),
   app = express();
 
-app.use(express.static('./client/static'));
+app.use(express.static('./public/static'));
 
 https.createServer({
-  key: fs.readFileSync('server/key.pem'),
-  cert: fs.readFileSync('server/cert.pem')
+  key: fs.readFileSync('key.pem'),
+  cert: fs.readFileSync('cert.pem')
 }, app).listen(8080);
 
 app.get('/', function(req, res) {
-	fs.readFile("./client/views/index.html", function(err, data) {
+	fs.readFile("./public/views/index.html", function(err, data) {
 	  if (err) {
 	    res.writeHead(404, {'Content-Type': 'text/html'});
 	    return res.end("404 Not Found");
