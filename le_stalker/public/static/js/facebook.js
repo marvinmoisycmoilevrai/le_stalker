@@ -32,6 +32,7 @@ function disconnect(){
 
 function statusChangeCallback(response) {
 	if(response.status == "connected"){
+
 		//FB.logout();
 		FB.api('/me', {fields: 'name,picture'}, function(response) {
 			$("#loginButton").hide();

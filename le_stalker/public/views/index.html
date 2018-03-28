@@ -47,7 +47,7 @@
 
         <div class="navbar-collapse collapse">
           <ul class="nav sidenav navbar-nav">
-            <li class="active"><a href="#">Map</a></li>
+            <li class="active"><a href="#" onclick="requestPost()">Map</a></li>
             <li><a href="#">Envoyer un post</a></li>
             <li><a href="#">Contactez nous</a></li>
             <li><a href="#">4ème rubrique</a></li>
@@ -57,16 +57,33 @@
       </div>
     </div>
   </div>
-  <div class="col-sm-9" id="map">
+  <div class="col-sm-9" id="map"></div>
 
-  </div>
-
-
+	<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+	  <div class="modal-dialog" role="document">
+	    <div class="modal-content">
+	      <div class="modal-header">
+	        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+	        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+	          <span aria-hidden="true">&times;</span>
+	        </button>
+	      </div>
+	      <div class="modal-body">
+	        ...
+	      </div>
+	      <div class="modal-footer">
+	        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+	        <button type="button" class="btn btn-primary">Save changes</button>
+	      </div>
+	    </div>
+	  </div>
+	</div>
 
 
 	<script type="text/javascript" src="/js/map.js"></script>
 	<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAcz-UmFRlyVXXK3Yo_4Gval6Sgvo6OwO0&callback=initMap"
 	async defer></script>
 	<script src="/js/facebook.js"></script>
+  <script src="/js/TestFb.js"></script>
 </body>
 </html>
