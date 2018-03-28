@@ -12,10 +12,11 @@ function requestPost(){
         dico.picture = post.picture;
         dico.message = post.message;
         dico.lat = post.place.location.latitude;
-        dico.long = post.place.location.longitude;
+        dico.lng = post.place.location.longitude;
         listPost.push(dico);
       }
     }
     console.log(listPost);
+		fillMap(listPost);
   });
 }
