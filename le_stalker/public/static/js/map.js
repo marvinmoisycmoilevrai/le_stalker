@@ -20,7 +20,7 @@ function fillMap(postList){
 						'<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#post'+postId+'">Voir plus</button>'+
             '</div>'+
 						'<div>'+
-            '<img src="'+postList[postId].picture+'"></img>'
+            (("picture" in postList[postId]) ? ('<img src="'+postList[postId].picture) +'"></img>' :"")+
             '</div>'+
 						'</div>';
 
@@ -96,7 +96,7 @@ function autocomplete(inp, arr) {
       }
     }
   }
-	
+
   /*execute a function when someone clicks in the document:*/
   document.addEventListener("click", function (e) {
       closeAllLists(e.target);
