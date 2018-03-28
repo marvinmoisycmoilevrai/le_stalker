@@ -1,9 +1,11 @@
 var fs = require('fs'),
   https = require('https'),
   express = require('express'),
+	bodyParser = require('body-parser'),
   app = express();
 
 app.use(express.static('./public/static'));
+app.use(bodyParser.json())
 
 https.createServer({
   key: fs.readFileSync('key.pem'),
@@ -23,8 +25,7 @@ app.get('/', function(req, res) {
 });
 
 app.post('/lapin', function(req,res) {
-  console.log(req);
-  console.log(res);
+  console.log(JSON.stringify(req.body, null, 2));
 });
 
 
