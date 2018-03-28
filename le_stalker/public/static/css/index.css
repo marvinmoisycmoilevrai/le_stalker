@@ -1,6 +1,10 @@
 h1,h3{
 	color: white;
 }
+
+h1{
+	margin-top: 50px;
+}
 .navbar-brand{
 	width: 10%;
 	height: 100%;
@@ -20,10 +24,27 @@ h1,h3{
     display: block;
   }
   .sidebar-nav .navbar li a {
-    padding-top: 12px;
-    padding-bottom: 12px;
+    padding-top: 20px;
+    padding-bottom: 20px;
   }
-	.sidebar-nav {
-		padding-top: -50px;
+	.sidenav {
+		height: 720px;
+		padding-top: 250px;
 	}
+}
+
+#map{
+    width: 80%;
+    height: 720px;
+    margin-bottom: 0px;
+}
+
+.black{
+	background-color: black;
+}
+
+html, body {
+	height: 100%;
+	margin: 0;
+	padding: 0;
 }

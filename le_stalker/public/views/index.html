@@ -10,12 +10,11 @@
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 </head>
 <body>
-   <div class="navbar-wrapper">
-       <nav class="navbar navbar-inverse navbar-static-top">
+       <nav class="navbar black navbar-inverse navbar-static-top">
            <a href="#"><img class="navbar-brand" src="/images/logo.jpeg"alt="Logo entreprise"/></a>
            <div class="navbar">
-						 <div class="col-sm-offset-5	">
-								<ul class="nav navbar-nav ">
+						 <div class="col-sm-offset-5">
+								<ul class="nav navbar-nav">
 									<div class="col-sm-offset-4">
                 		<h1>Le stalker</h1>
 									</div>
@@ -31,129 +30,35 @@
  							</fb:login-button>
              </div>
            </div>
-         </div>
-       </nav>
-   </div>
-   <!-- <div class="container"> -->
+					 </nav>
+
 <div class="row">
   <div class="col-sm-2">
     <div class="sidebar-nav">
-      <div class="navbar navbar-inverse" role="navigation">
-        <div class="navbar-header">
-          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".sidebar-navbar-collapse">
-            <span class="sr-only">Toggle navigation</span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-          </button>
-          <span class="visible-xs navbar-brand">Sidebar menu</span>
-        </div>
-        <div class="navbar-collapse collapse sidebar-navbar-collapse">
-          <ul class="nav navbar-nav">
-            <li class="active"><a href="#">Menu Item 1</a></li>
-            <li><a href="#">Menu Item 2</a></li>
-            <li><a href="#">Menu Item 3</a></li>
-            <li><a href="#">Menu Item 4</a></li>
+      <div class="navbar black navbar-inverse" role="navigation">
 
+        <div class="navbar-collapse collapse">
+          <ul class="nav sidenav navbar-nav">
+            <li class="active"><a href="#">Map</a></li>
+            <li><a href="#">Envoyer un post</a></li>
+            <li><a href="#">Contactez nous</a></li>
+            <li><a href="#">4ème rubrique</a></li>
           </ul>
         </div>
 
       </div>
     </div>
   </div>
-  <div class="col-sm-9">
-    Main content goes here
+  <div class="col-sm-9" id="map">
+
   </div>
-<!-- </div> -->
-</div>
-	 <script>
-	 window.fbAsyncInit = function() {
-	 	FB.init({
-	 		appId      : '929000163934820',
-	 		cookie     : true,
-	 		xfbml      : true,
-	 		version    : 'v2.10'
-	 	});
-
-	 	//FB.AppEvents.logPageView();
-
-	 	FB.getLoginStatus(function(response) {
-	     statusChangeCallback(response);
-	 	});
 
 
-	 	function checkLoginState() {
-	   	FB.getLoginStatus(function(response) {
-	     	statusChangeCallback(response);
-	   	});
-	 	}
 
 
-	 };
-	 function statusChangeCallback(response) {
-	 	console.log(response);
-	 }
-	 (function(d, s, id){
-	 	 var js, fjs = d.getElementsByTagName(s)[0];
-	 	 if (d.getElementById(id)) {return;}
-	 	 js = d.createElement(s); js.id = id;
-	 	 js.src = "https://connect.facebook.net/en_US/sdk.js";
-	 	 fjs.parentNode.insertBefore(js, fjs);
-	  }(document, 'script', 'facebook-jssdk'));
-	 </script>
-	 	</body>
-
-
+	<script type="text/javascript" src="/js/map.js"></script>
+	<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAcz-UmFRlyVXXK3Yo_4Gval6Sgvo6OwO0&callback=initMap"
+	async defer></script>
+	<script src="/js/facebook.js"></script>
 </body>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<!--
-
-	<script>
-
-
-	window.fbAsyncInit = function() {
-		FB.init({
-			appId      : '929000163934820',
-			xfbml      : true,
-			version    : 'v2.10'
-		});
-
-		FB.getLoginStatus(function(response) {
-			if (response.status === 'connected') {
-				console.log('Logged in.');
-			}
-			else {
-				FB.login();
-			}
-		});
-	};
-
-	(function(d, s, id){
-		var js, fjs = d.getElementsByTagName(s)[0];
-		if (d.getElementById(id)) {return;}
-		js = d.createElement(s); js.id = id;
-		js.src = "https://connect.facebook.net/en_US/sdk.js";
-		fjs.parentNode.insertBefore(js, fjs);
-	}(document, 'script', 'facebook-jssdk'));</script> -->
 </html>
