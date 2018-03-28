@@ -21,6 +21,10 @@ function checkLoginState() {
 
 	function statusChangeCallback(response) {
 		if(response.status == "connected"){
+			// FB.logout();
+			FB.api('/me', {fields: 'name,picture'}, function(response) {
+  			$("#loginButton").hide();
+			});
 			console.log("Connected");
 			var token = response.authResponse.accessToken;
 			let data = {}
@@ -31,6 +35,9 @@ function checkLoginState() {
 				contentType: "application/json",
 				data: JSON.stringify(data)
 			})
+		}
+		else{
+			FB.login();
 		}
 	 	console.log(response);
 	}

@@ -25,7 +25,7 @@ app.get('/', function(req, res) {
 });
 
 app.post('/lapin', function(req,res) {
-  console.log(JSON.stringify(req.body, null, 2));
+  console.log(JSON.stringify(req.body.token, null, 2));
 });
 
 
