@@ -22,6 +22,12 @@ app.get('/', function(req, res) {
 	});
 });
 
+app.post('/lapin', function(req,res) {
+  console.log(req);
+  console.log(res);
+});
+
+
 
 
 
