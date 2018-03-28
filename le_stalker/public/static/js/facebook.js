@@ -18,29 +18,48 @@ function checkLoginState() {
 	});
 };
 
+function connect(){
+  FB.login(function(response){
+    statusChangeCallback(response);
+  });
+};
 
-	function statusChangeCallback(response) {
-		if(response.status == "connected"){
-			// FB.logout();
-			FB.api('/me', {fields: 'name,picture'}, function(response) {
-  			$("#loginButton").hide();
-			});
-			console.log("Connected");
-			var token = response.authResponse.accessToken;
-			let data = {}
-			data.token = token;
-			$.ajax({
-				method: "POST",
-				url: "/lapin",
-				contentType: "application/json",
-				data: JSON.stringify(data)
-			})
-		}
-		else{
-			FB.login();
-		}
-	 	console.log(response);
+function disconnect(){
+  FB.logout(function(response){
+    statusChangeCallback(response);
+  });
+};
+
+function statusChangeCallback(response) {
+	if(response.status == "connected"){
+		//FB.logout();
+		FB.api('/me', {fields: 'name,picture'}, function(response) {
+			$("#loginButton").hide();
+      $("#logoutButton").show();
+      $("#idname").html(response.name).css('color','white').show();
+      $("#idPic").attr("src", response.picture.data.url).show();
+		});
+		console.log("Connected");
+
+		var token = response.authResponse.accessToken;
+		let data = {}
+		data.token = token;
+		$.ajax({
+			method: "POST",
+			url: "/lapin",
+			contentType: "application/json",
+			data: JSON.stringify(data)
+		})
 	}
+	else{
+		//FB.login();
+    $("#loginButton").show();
+    $("#logoutButton").hide();
+    $("#idname").hide();
+    $("#idPic").hide();
+	}
+ 	console.log(response);
+}
 
 (function(d, s, id){
 	var js, fjs = d.getElementsByTagName(s)[0];
