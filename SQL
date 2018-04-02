@@ -1,0 +1,16 @@
+-- Création des tables
+
+CREATE TABLE posts
+(
+	id_post INTEGER PRIMARY KEY NOT NULL AUTOINCREMENT;
+	nom_auteur varchar(20);
+	prenom_auteur varchar(20);
+	photo_url varchar(100);
+	date_post Date;
+	message text;
+)
+
+-- Récupération de tous les posts à une date
+
+SELECT nom_auteur,prenom_auteur,photo_url,message FROM posts 
+WHERE date = "date"
