@@ -3,9 +3,31 @@ var fs = require('fs'),
   express = require('express'),
 	bodyParser = require('body-parser'),
   app = express();
+  sqlite3 = require('sqlite3')
 
 app.use(express.static('./public/static'));
 app.use(bodyParser.json())
+
+// let db = new sqlite3.Database('./database/SQL.db', sqlite3.OPEN_READWRITE, (err) => {
+//   if (err) {
+//     console.error(err.message);
+//   }
+//   console.log('Connected to the database.');
+// });
+//
+// let req = `SELECT nom_auteur,prenom_auteur,photo_url,message FROM posts WHERE date = "CALCUL"`;
+//
+// db.all(req, [], (err, rows) => {
+//   if (err) {
+//     throw err;
+//   }
+//   rows.forEach((row) => {
+//     let nom_auteur = row.nom_auteur;
+//     let prenom_auteur = row.prenom_auteur;
+//     let photo_url = row.photo_url;
+//     let message = row.message
+//   });
+// });
 
 https.createServer({
   key: fs.readFileSync('key.pem'),
