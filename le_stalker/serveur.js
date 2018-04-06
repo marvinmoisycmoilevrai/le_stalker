@@ -8,26 +8,46 @@ var fs = require('fs'),
 app.use(express.static('./public/static'));
 app.use(bodyParser.json())
 
-// let db = new sqlite3.Database('./database/SQL.db', sqlite3.OPEN_READWRITE, (err) => {
-//   if (err) {
-//     console.error(err.message);
-//   }
-//   console.log('Connected to the database.');
-// });
-//
-// let req = `SELECT nom_auteur,prenom_auteur,photo_url,message FROM posts WHERE date = "CALCUL"`;
-//
-// db.all(req, [], (err, rows) => {
-//   if (err) {
-//     throw err;
-//   }
-//   rows.forEach((row) => {
-//     let nom_auteur = row.nom_auteur;
-//     let prenom_auteur = row.prenom_auteur;
-//     let photo_url = row.photo_url;
-//     let message = row.message
-//   });
-// });
+let db = new sqlite3.Database('./database/SQL.db', sqlite3.OPEN_READWRITE, (err) => {
+  if (err) {
+    console.error(err.message);
+  }
+  console.log('Connected to the database.');
+});
+app.get('/getPostsDate', function(req,res){
+  let datereq = JSON.stringify(req.body.date, null, 2);
+  let requete = `SELECT nom_auteur,photo_url,message,latitude,longitude FROM posts WHERE date = '`+datereq+`'`;
+  res.writeHead(200, {'Content-Type': 'application/json'});
+  let postlist=[];
+  db.all(requete, [], (err, rows) => {
+    if (err) {
+      throw err;
+    }
+    rows.forEach((row) => {
+      let post={}
+      post.name = row.nom_auteur;
+      post.picture = row.photo_url;
+      post.message = row.message;
+      post.lat = row.latitude;
+      post.lng = row.longitude;
+      postlist.push(post);
+    });
+  });
+  res.write(postlist);
+});
+
+
+app.post('/insertPosts', function(req,res) {
+  console.log(JSON.stringify(req.body, null, 2));
+  insertPosts(JSON.stringify(req.body, null, 2));
+});
+function insertPosts(posts) {
+        posts.forEach(function(post) {
+            db.run("INSERT OR IGNORE INTO posts (id_post,nom_auteur, photo_url,message,latitude,longitude,date) VALUES (?,?,?,?,?,?,?)", [post["id_post"], post["name"], post["picture"],post["message"], post["lat"], post["lng"],post["date"]]);
+        });
+    }
+
+let post = `INSERT INTO posts VALUES`
 
 https.createServer({
   key: fs.readFileSync('key.pem'),
