@@ -63,7 +63,7 @@ function statusChangeCallback(response) {
 }
 
 function requestPost(){
-  FB.api('/me/feed', {fields: 'from,picture,message,place'}, function(response) {
+  FB.api('/me/feed', {fields: 'from,picture,message,place,id,created_time'}, function(response) {
 
     //console.log(response.data);
     let listPost = new Array();
@@ -72,17 +72,49 @@ function requestPost(){
       let post = response.data[id_post];
       if ("place" in post && "from" in post && "message" in post){
         let dico = {}
+				//idPost, date
         dico.name = post.from.name;
         dico.picture = post.picture;
         dico.message = post.message;
         dico.lat = post.place.location.latitude;
         dico.lng = post.place.location.longitude;
+				dico.date = post.created_time.substring(0,7);
+				dico.id_post = post.id;
         listPost.push(dico);
       }
     }
-    console.log(listPost);
-		fillMap(listPost);
+
+		$.ajax({
+			method: "POST",
+			url: "/insertPosts",
+			contentType: "application/json",
+			data: JSON.stringify(listPost),
+			dataType: "text",
+			success: function(response, statut){
+				console.log(statut);
+				console.log(response);
+				getPosts();
+			}
+		});
   });
+}
+
+function getPosts(){
+	let today = new Date();
+	let datestr = today.getFullYear()+"-"+today.getMonth()
+	console.log(datestr);
+	$.ajax({
+		method: "GET",
+		url: "/getPostsDate",
+		contentType: "application/json",
+		data: datestr,
+		success: function(response, statut){
+			console.log(response);
+			console.log(status);
+			fillMap(response);
+		}
+
+	});
 }
 
 (function(d, s, id){

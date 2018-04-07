@@ -14,15 +14,17 @@ let db = new sqlite3.Database('./database/SQL.db', sqlite3.OPEN_READWRITE, (err)
   }
   console.log('Connected to the database.');
 });
+
 app.get('/getPostsDate', function(req,res){
-  let datereq = JSON.stringify(req.body.date, null, 2);
-  let requete = `SELECT nom_auteur,photo_url,message,latitude,longitude FROM posts WHERE date = '`+datereq+`'`;
-  res.writeHead(200, {'Content-Type': 'application/json'});
+	console.log(req.url.split("?")[1]);
+	datereq  = req.url.split("?")[1]
+  let requete = `SELECT nom_auteur,photo_url,message,latitude,longitude FROM posts WHERE date = '2018-3'`;
   let postlist=[];
   db.all(requete, [], (err, rows) => {
     if (err) {
       throw err;
     }
+		console.log(rows);
     rows.forEach((row) => {
       let post={}
       post.name = row.nom_auteur;
@@ -33,21 +35,31 @@ app.get('/getPostsDate', function(req,res){
       postlist.push(post);
     });
   });
-  res.write(postlist);
+	// console.log("postlist" + postlist);
+	console.log("sending response"+postlist);
+	res.json(postlist)
 });
 
 
 app.post('/insertPosts', function(req,res) {
-  console.log(JSON.stringify(req.body, null, 2));
-  insertPosts(JSON.stringify(req.body, null, 2));
+  // console.log(JSON.stringify(req.body, null, 2));
+  insertPosts(req.body);
+	res.status(200).send("ok");
 });
 function insertPosts(posts) {
-        posts.forEach(function(post) {
-            db.run("INSERT OR IGNORE INTO posts (id_post,nom_auteur, photo_url,message,latitude,longitude,date) VALUES (?,?,?,?,?,?,?)", [post["id_post"], post["name"], post["picture"],post["message"], post["lat"], post["lng"],post["date"]]);
-        });
-    }
+	console.log(typeof(posts));
+	for (lepost in posts){
+		// console.log(posts[post]);
+		let post = posts[lepost]
+		db.run("INSERT OR IGNORE INTO posts (id_post,nom_auteur, photo_url,message,latitude,longitude,date) VALUES (?,?,?,?,?,?,?)", [post.id_post, post.name, post.picture,post.message, post.lat, post.lng,post.date]);
+	}
+	// console.log(posts);
+  //       Array.from(posts).forEach(function(post) {
+	// 				console.log(post);
+	// 				// console.log(post);
 
-let post = `INSERT INTO posts VALUES`
+  //       });
+};
 
 https.createServer({
   key: fs.readFileSync('key.pem'),
