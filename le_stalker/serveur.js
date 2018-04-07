@@ -16,28 +16,23 @@ let db = new sqlite3.Database('./database/SQL.db', sqlite3.OPEN_READWRITE, (err)
 });
 
 app.get('/getPostsDate', function(req,res){
-	console.log(req.url.split("?")[1]);
-	datereq  = req.url.split("?")[1]
+	datereq  = req.url.split("?")[1];
   let requete = `SELECT nom_auteur,photo_url,message,latitude,longitude FROM posts WHERE date = '2018-3'`;
-  let postlist=[];
   db.all(requete, [], (err, rows) => {
     if (err) {
       throw err;
     }
-		console.log(rows);
-    rows.forEach((row) => {
-      let post={}
-      post.name = row.nom_auteur;
-      post.picture = row.photo_url;
-      post.message = row.message;
-      post.lat = row.latitude;
-      post.lng = row.longitude;
-      postlist.push(post);
+    let postlist = rows.map(post => {
+      return {
+        name: post.nom_auteur,
+        picture: post.photo_url,
+        message: post.message,
+        lat: post.latitude,
+        lng: post.longitude
+      }
     });
+  	res.json(postlist);
   });
-	// console.log("postlist" + postlist);
-	console.log("sending response"+postlist);
-	res.json(postlist)
 });
 
 

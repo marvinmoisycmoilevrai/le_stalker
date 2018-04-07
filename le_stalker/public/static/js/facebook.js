@@ -102,6 +102,7 @@ function requestPost(){
 function getPosts(){
 	let today = new Date();
 	let datestr = today.getFullYear()+"-"+today.getMonth()
+
 	console.log(datestr);
 	$.ajax({
 		method: "GET",
@@ -109,7 +110,7 @@ function getPosts(){
 		contentType: "application/json",
 		data: datestr,
 		success: function(response, statut){
-			console.log(response);
+			console.log("response :"+response);
 			console.log(status);
 			fillMap(response);
 		}
