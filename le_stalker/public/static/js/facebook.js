@@ -46,7 +46,7 @@ function statusChangeCallback(response) {
 		requestPost();
 	}
 	else{
-		//FB.login();
+		connect();
     $("#loginButton").show();
     $("#logoutButton").hide();
     $("#idname").hide();
