@@ -101,7 +101,7 @@ function initMapMonths(datestr){
 		data: datestr,
 		success: function(response, statut){
 			console.log("response :"+response);
-			generateMonths()
+			generateMonths();
 			fillMap(response);
 		}
 	});
@@ -143,6 +143,14 @@ function generateMonths() {
 	});
 }
 
+// function repondre(nom){
+// 	console.log("laaaaaaaaaaaaaaaaaaaaaappppppppppppppppppiiiiiiiiiiiiiiiiiiiinnnnnnnnnnnnnnnnnnnnn");
+// 	// $("#rubriqueMap").hide();
+// 	// $("#rubriqueEnvoi").show();
+// 	// console.log();
+//   // $("#lapin").val("@"+nom);
+// };
+
 (function(d, s, id){
 	var js, fjs = d.getElementsByTagName(s)[0];
 	if (d.getElementById(id)) {return;}
@@ -150,8 +158,3 @@ function generateMonths() {
 	js.src = "https://connect.facebook.net/en_US/sdk.js";
 	fjs.parentNode.insertBefore(js, fjs);
  }(document, 'script', 'facebook-jssdk'));
-
-
-function repondre(nom){
-  $("#lapin").val("@"+nom);
-}

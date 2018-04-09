@@ -13,6 +13,7 @@
 <body>
 	<script type="text/javascript">
 		$("#rubriqueMap").hide();
+		$("#rubriqueEnvoi").hide();
 	</script>
        <nav class="navbar black navbar-inverse navbar-static-top">
            <a href="#"><img class="navbar-brand" src="/images/logo.jpeg"alt="Logo entreprise"/></a>
@@ -69,10 +70,7 @@
 
 
 	</div>
-  <div id="rubriqueEnvoi">
-    <input type="text" id = lapin />
-    <button onclick="EnvoyerPost()">Envoyer</button>
-  </div>
+
 
   <div class="col-sm-9" id="map"></div>
 	<div class="col-sm-9 col-sm-offset-5">
@@ -84,6 +82,12 @@
 	<div id="modals"></div>
 </div>
 
+</div>
+
+
+<div id="rubriqueEnvoi">
+	<input type="text" id ="lapin" />
+	<button onclick="EnvoyerPost()">Envoyer</button>
 </div>
 
 	<script type="text/javascript" src="/js/map.js"></script>
