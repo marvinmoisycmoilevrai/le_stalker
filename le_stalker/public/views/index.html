@@ -11,10 +11,7 @@
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 </head>
 <body>
-	<script type="text/javascript">
-		$("#rubriqueMap").hide();
-		$("#rubriqueEnvoi").hide();
-	</script>
+
        <nav class="navbar black navbar-inverse navbar-static-top">
            <a href="#"><img class="navbar-brand" src="/images/logo.jpeg"alt="Logo entreprise"/></a>
            <div class="navbar">
@@ -39,28 +36,28 @@
            </div>
 					 </nav>
 
+					 <div class="col-sm-2">
+						 <div class="sidebar-nav">
+							 <div class="navbar black navbar-inverse" role="navigation">
+
+								 <div class="navbar-collapse collapse">
+									 <ul class="nav sidenav navbar-nav">
+										 <li id="maplabelnav" class="active" onclick="showRubriqueMap()"><a href="#">Map</a></li>
+										 <li id="postlabelnav" ><a href="#" onclick="showRubriqueEnvoi()">Envoyer un post</a></li>
+										 <li><a href="#">Contactez nous</a></li>
+										 <li><a href="#">4ème rubrique</a></li>
+									 </ul>
+								 </div>
+
+							 </div>
+						 </div>
+					 </div>
 <div id="loading"></div>
 
 
 <div id="rubriqueMap">
 
 <div class="row">
-  <div class="col-sm-2">
-    <div class="sidebar-nav">
-      <div class="navbar black navbar-inverse" role="navigation">
-
-        <div class="navbar-collapse collapse">
-          <ul class="nav sidenav navbar-nav">
-            <li class="active"><a href="#">Map</a></li>
-            <li><a href="#">Envoyer un post</a></li>
-            <li><a href="#">Contactez nous</a></li>
-            <li><a href="#">4ème rubrique</a></li>
-          </ul>
-        </div>
-
-      </div>
-    </div>
-  </div>
 	<div id="floating-panel">
 		<form autocomplete="off" action="/action_page.php">
 		  <div class="autocomplete" style="width:300px;">
@@ -85,11 +82,13 @@
 </div>
 
 
-<div id="rubriqueEnvoi">
-	<input type="text" id ="lapin" />
-	<button onclick="EnvoyerPost()">Envoyer</button>
+<div id="rubriqueEnvoi" class="col-sm-9">
+	<input type="text" id="lapin"/>
+	<button onclick="envoyerPost()">Envoyer</button>
 </div>
-
+	<script type="text/javascript">
+		$("#rubriqueEnvoi").hide();
+	</script>
 	<script type="text/javascript" src="/js/map.js"></script>
 	<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAcz-UmFRlyVXXK3Yo_4Gval6Sgvo6OwO0&callback=initMap"
 	async defer></script>

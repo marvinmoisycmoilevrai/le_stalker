@@ -46,8 +46,8 @@ function fillMap(postList){
 						postList[postId].message+
 						'</div>'+
 						'<div class="modal-footer">'+
-						'<button type="button" class="btn btn-secondary" data-dismiss="modal">Fermer</button>'+
-						'<button type="button" onclick="repondre("'+postList[postId].name+'")" class="btn btn-primary">Répondre</button>'+
+						'<button type="button" id="close'+modalCount+'" class="btn btn-secondary" data-dismiss="modal">Fermer</button>'+
+						'<button type="button" onclick="repondre('+modalCount+')" class="btn btn-primary">Répondre</button>'+
 						'</div>'+
 						'</div>'+
 						'</div>'+
@@ -109,11 +109,9 @@ function autocomplete(inp, arr) {
   /*execute a function when someone clicks in the document:*/
   document.addEventListener("click", function (e) {
       closeAllLists(e.target);
-      });
+  });
 }
 
 function majmap(){
 	getPosts($("#dates").val());
-	// console.log($("#months").val());
-	// console.log($("#years").val());
 }

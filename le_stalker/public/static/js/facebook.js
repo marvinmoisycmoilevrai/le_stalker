@@ -62,6 +62,7 @@ function requestPost(){
     let listPost = new Array();
     let exist = true;
     for (let id_post in response.data){
+			console.log(response.data);
       let post = response.data[id_post];
       if ("place" in post && "from" in post && "message" in post){
         let dico = {}
@@ -143,13 +144,32 @@ function generateMonths() {
 	});
 }
 
-// function repondre(nom){
-// 	console.log("laaaaaaaaaaaaaaaaaaaaaappppppppppppppppppiiiiiiiiiiiiiiiiiiiinnnnnnnnnnnnnnnnnnnnn");
-// 	// $("#rubriqueMap").hide();
-// 	// $("#rubriqueEnvoi").show();
-// 	// console.log();
-//   // $("#lapin").val("@"+nom);
-// };
+function envoyerPost() {
+	FB.api('/me/feed', 'post', {message: $("#lapin").val()}, function(response){
+		alert("Message envoyé !")
+		console.log(response);
+	})
+}
+
+function repondre(arg){
+	$("#close"+arg).click();
+	showRubriqueEnvoi();
+  $("#lapin").val("@"+$("#post"+arg)[0].textContent.split("×")[0]);
+};
+
+function showRubriqueEnvoi() {
+	$("#rubriqueMap").hide();
+	$("#maplabelnav").removeClass("active");
+	$("#rubriqueEnvoi").show();
+	$("#postlabelnav").addClass("active");
+}
+
+function showRubriqueMap() {
+	$("#rubriqueMap").show();
+	$("#maplabelnav").addClass("active");
+	$("#rubriqueEnvoi").hide();
+	$("#postlabelnav").removeClass("active");
+}
 
 (function(d, s, id){
 	var js, fjs = d.getElementsByTagName(s)[0];
