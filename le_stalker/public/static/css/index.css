@@ -178,7 +178,9 @@ input[type=submit] {
 	z-index: 9999;
 	top: 0px;
 	left: 0px;
-	background: url("https://loading.io/spinners/gears/lg.dual-gear-loading-icon.gif") 50% 50% no-repeat;
+	background: url("/images/loader3.gif") 50% 50% ;
+	background-repeat: no-repeat;
+	background-size: cover;
 	height: 100%;
 	width: 100%;
 	cursor: wait;
