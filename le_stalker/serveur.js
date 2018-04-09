@@ -17,23 +17,63 @@ let db = new sqlite3.Database('./database/SQL.db', sqlite3.OPEN_READWRITE, (err)
 
 app.get('/getPostsDate', function(req,res){
 	datereq  = req.url.split("?")[1];
-  let requete = `SELECT nom_auteur,photo_url,message,latitude,longitude FROM posts WHERE date = '2018-3'`;
+	console.log(datereq);
+	if (typeof(datereq) == "undefined"){
+		let requete = `SELECT nom_auteur,photo_url,message,latitude,longitude FROM posts WHERE date = (select max(date) from posts)`;
+	  db.all(requete, [], (err, rows) => {
+	    if (err) {
+	      throw err;
+	    }
+	    postList = rows.map(post => {
+	      return {
+	        name: post.nom_auteur,
+	        picture: post.photo_url,
+	        message: post.message,
+	        lat: post.latitude,
+	        lng: post.longitude
+	      }
+	    });
+			res.json(postList);
+	  });
+	}
+	else{
+		let requete = `SELECT nom_auteur,photo_url,message,latitude,longitude FROM posts WHERE date = '`+datereq+`'`;
+		// var postList = [];
+	  db.all(requete, [], (err, rows) => {
+	    if (err) {
+	      throw err;
+	    }
+	    postList = rows.map(post => {
+	      return {
+	        name: post.nom_auteur,
+	        picture: post.photo_url,
+	        message: post.message,
+	        lat: post.latitude,
+	        lng: post.longitude
+	      }
+	    });
+			res.json(postList);
+	  });
+	}
+});
+
+
+app.get('/getPostsDates', function(req,res){
+	datereq  = req.url.split("?")[1];
+  let requete = `select DISTINCT date from posts`;
   db.all(requete, [], (err, rows) => {
     if (err) {
       throw err;
     }
-    let postlist = rows.map(post => {
+    let dates = rows.map(post => {
       return {
-        name: post.nom_auteur,
-        picture: post.photo_url,
-        message: post.message,
-        lat: post.latitude,
-        lng: post.longitude
+        date: post.date
       }
     });
-  	res.json(postlist);
+  	res.json(dates);
   });
 });
+
 
 
 app.post('/insertPosts', function(req,res) {

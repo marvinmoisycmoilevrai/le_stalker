@@ -43,14 +43,7 @@ function statusChangeCallback(response) {
 		console.log("Connected");
 
 		var token = response.authResponse.accessToken;
-		let data = {}
-		data.token = token;
-		$.ajax({
-			method: "POST",
-			url: "/lapin",
-			contentType: "application/json",
-			data: JSON.stringify(data)
-		})
+		requestPost();
 	}
 	else{
 		//FB.login();
@@ -93,17 +86,14 @@ function requestPost(){
 			success: function(response, statut){
 				console.log(statut);
 				console.log(response);
-				getPosts();
+				let today = new Date();
+				initMapMonths("");
 			}
 		});
   });
 }
 
-function getPosts(){
-	let today = new Date();
-	let datestr = today.getFullYear()+"-"+today.getMonth()
-
-	console.log(datestr);
+function initMapMonths(datestr){
 	$.ajax({
 		method: "GET",
 		url: "/getPostsDate",
@@ -111,10 +101,45 @@ function getPosts(){
 		data: datestr,
 		success: function(response, statut){
 			console.log("response :"+response);
-			console.log(status);
+			generateMonths()
+			fillMap(response);
+		}
+	});
+}
+
+function getPosts(datestr){
+	$.ajax({
+		method: "GET",
+		url: "/getPostsDate",
+		contentType: "application/json",
+		data: datestr,
+		success: function(response, statut){
+			console.log("response :"+response);
 			fillMap(response);
 		}
 
+	});
+}
+
+function generateMonths() {
+	$.ajax({
+		method: "GET",
+		url: "/getPostsDates",
+		contentType: "application/json",
+		success: function(response, statut){
+			let dates = response.map(date => {
+	      return date.date
+	    });
+			dates = dates.sort();
+			dates.forEach(date => {
+				$("#dates").append($('<option>', {
+				id : date,
+        value: date,
+        text : date
+    		}));
+	    });
+			$("#dates").val(dates[dates.length-1]).change();
+		}
 	});
 }
 

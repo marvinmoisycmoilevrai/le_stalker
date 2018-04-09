@@ -6,18 +6,25 @@ function initMap() {
 	});
 }
 
+var infoWindows = [];
+var modalCount = 0;
 
 function fillMap(postList){
 	var autocompleteValues = [];
+	infoWindows.forEach(info => {
+			info.close();
+	});
+	infoWindows=[];
 	for(postId in postList){
 		autocompleteValues.push({"name":postList[postId].name, "lat": parseFloat(postList[postId].lat), "lng": parseFloat(postList[postId].lng)});
 		let infoPost = new google.maps.InfoWindow();
+		infoWindows.push(infoPost);
 		let contentString =
 						'<div>'+
 						'<div>'+
             '<b>'+postList[postId].name+'</b></br>'+
 						postList[postId].message+
-						'<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#post'+postId+'">Voir plus</button>'+
+						'<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#post'+modalCount+'">Voir plus</button>'+
             '</div>'+
 						'<div>'+
             (("picture" in postList[postId]) ? ('<img src="'+postList[postId].picture) +'"></img>' :"")+
@@ -25,7 +32,7 @@ function fillMap(postList){
 						'</div>';
 
 		$("#modals").append(
-						'<div class="modal fade" id="post'+postId+'" tabindex="-1" role="dialog" aria-hidden="true">'+
+						'<div class="modal fade" id="post'+modalCount+'" tabindex="-1" role="dialog" aria-hidden="true">'+
 						'<div class="modal-dialog" role="document">'+
 						'<div class="modal-content">'+
 						'<div class="modal-header">'+
@@ -45,13 +52,15 @@ function fillMap(postList){
 						'</div>'+
 						'</div>'+
 						'</div>');
-
+		modalCount++;
 		infoPost.setContent(contentString);
 		let x = new google.maps.LatLng(parseFloat(postList[postId].lat),parseFloat(postList[postId].lng));
 		infoPost.setPosition(x);
 		infoPost.open(map);
 	}
 	autocomplete(document.getElementById("searchBar"), autocompleteValues);
+	$("#loading").fadeOut("1000");
+	$("#rubriqueMap").show();
 }
 
 
@@ -101,4 +110,10 @@ function autocomplete(inp, arr) {
   document.addEventListener("click", function (e) {
       closeAllLists(e.target);
       });
+}
+
+function majmap(){
+	getPosts($("#dates").val());
+	// console.log($("#months").val());
+	// console.log($("#years").val());
 }

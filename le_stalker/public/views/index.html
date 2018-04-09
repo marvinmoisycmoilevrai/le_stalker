@@ -6,10 +6,14 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" type="text/css"/>
 	<link rel="stylesheet" href="/css/index.css"/>
+
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 </head>
 <body>
+	<script type="text/javascript">
+		$("#rubriqueMap").hide();
+	</script>
        <nav class="navbar black navbar-inverse navbar-static-top">
            <a href="#"><img class="navbar-brand" src="/images/logo.jpeg"alt="Logo entreprise"/></a>
            <div class="navbar">
@@ -34,6 +38,11 @@
            </div>
 					 </nav>
 
+<div id="loading"></div>
+
+
+<div id="rubriqueMap">
+
 <div class="row">
   <div class="col-sm-2">
     <div class="sidebar-nav">
@@ -41,7 +50,7 @@
 
         <div class="navbar-collapse collapse">
           <ul class="nav sidenav navbar-nav">
-            <li class="active"><a href="#" onclick="requestPost()">Map</a></li>
+            <li class="active"><a href="#">Map</a></li>
             <li><a href="#">Envoyer un post</a></li>
             <li><a href="#">Contactez nous</a></li>
             <li><a href="#">4ème rubrique</a></li>
@@ -57,11 +66,21 @@
 		    <input id="searchBar" type="text" placeholder="Chercher un post">
 		  </div>
 		</form>
+
+
 	</div>
 
   <div class="col-sm-9" id="map"></div>
-	<div id="modals"></div>
+	<div class="col-sm-9 col-sm-offset-5">
+		<label>Choisir une date:</label>
+		<select id="dates" onchange="majmap()">
+		</select>
+	</div>
 
+	<div id="modals"></div>
+</div>
+
+</div>
 
 	<script type="text/javascript" src="/js/map.js"></script>
 	<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAcz-UmFRlyVXXK3Yo_4Gval6Sgvo6OwO0&callback=initMap"
